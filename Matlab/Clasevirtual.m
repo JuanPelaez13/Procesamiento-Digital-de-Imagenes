@@ -46,8 +46,14 @@ L=3;
 K=my_fspecial('average',L);
 If=my_imfilter(I,K);
 
+W=5;
+S=W/6;
 
+Limte=(W-1)/2;
 
+[X,Y]=meshgrid(-Limite:Limite,-Limite:Limite)
+
+Z=(1/(2*pi())*S^2)*exp(-(X.^2))
 figure(2)
 imshow(If)
 title('Imagen Filtrada')

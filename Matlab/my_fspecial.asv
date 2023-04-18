@@ -5,8 +5,7 @@ if nargin ==1
 end
 
 
-tipo=lower(tipo);
-
+TIPO=lower(tipo);
 if nargin ==1  & tipo=="laplacian"
     T=0.2;
 end
