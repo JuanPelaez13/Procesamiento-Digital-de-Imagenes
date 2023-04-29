@@ -29,7 +29,7 @@ switch tipo
         S =W/6;
         Limite=(T-1)/2;
 
-        [X,Y] = meshgrid(-Limite:Limite,-Limite:Limite)
+        [X,Y] = meshgrid(-Limite:Limite,-Limite:Limite);
 
         K=(1/(2*pi())*S^2)*exp(-(X.^2+Y.^2)/(2*S^2));
         K= K/sum(K(:));
@@ -38,7 +38,23 @@ switch tipo
         A =T;
         K=4/(A+1)*[A/4 (1-A)/4 A/4;
                   (1-A)/4 -1 (1-A)/4;
-                  A/4 (1-A)/4  A/4;];
+                  A/4 (1-A)/4  A/4];
+
+    case 'log'
+        S=W;
+        Limite = (T-1)/2;
+        [X,Y] = meshgrid(-Limite:Limite,-Limite:Limite,1);
+        z=(1/(2*pi*S))*exp(-(X.^2+Y.^2)/(2*S^2));
+        gau=z./sum(z(:));
+        f2=(gau.*(X.^2+Y.^2-(2*S^2)))/(S^4);
+        K=f2-sum(f2(:))/T^2;
+
+    case 'prewitt'
+        K= [1 1 1; 0 0 0; -1 -1 -1];
+
+    case 'sobel'
+        K = [1 2 1; 0 0 0; -1 -2 -1];
+
 
 end
 
