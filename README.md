@@ -21,6 +21,9 @@ Los códigos Matlab y Python incluyen las siguientes funcionalidades para el pro
 - Realizar la ecualización del histograma para mejorar la imagen.
 - Agregar ruido gaussiano, uniforme y de sal y pimienta a la imagen.
 - Realizar filtrado espacial para mejorar la imagen.
+- Segmentación de objetos en una imágen.
+- Detección de bordes en objetos de imágenes
+- Muchos más....
 
 ## Requerimientos
 
