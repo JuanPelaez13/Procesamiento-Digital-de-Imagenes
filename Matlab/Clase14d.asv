@@ -74,15 +74,71 @@ Herramienta4= L == 4;
 figure(5)
 subplot(1,4,1)
 imshow(Herramienta1)
+title('Herramienta 1')
 
 subplot(1,4,2)
 imshow(Herramienta2)
+title('Herramienta 2')
 
 subplot(1,4,3)
 imshow(Herramienta3)
+title('Herramienta 3')
 
 subplot(1,4,4)
 imshow(Herramienta4)
+title('Herramienta 4')
 
+%Etiquetado con color real
 
 Segmentada1 = I.*uint8(Herramienta1);
+Segmentada2 = I.*uint8(Herramienta2);
+Segmentada3 = I.*uint8(Herramienta3);
+Segmentada4 = I.*uint8(Herramienta4);
+
+figure(6)
+subplot(1,4,1)
+imshow(Segmentada1)
+title('Herramienta 1')
+
+subplot(1,4,2)
+imshow(Segmentada2)
+title('Herramienta 2')
+
+subplot(1,4,3)
+imshow(Segmentada3)
+title('Herramienta 3')
+
+subplot(1,4,4)
+imshow(Segmentada4)
+title('Herramienta 4')
+
+
+
+%Extracción de caracteristicas de cada elemento
+%Basic extrae las tres caracteristicas principales de un objeto
+
+propiedades = regionprops(Herramienta1,'basic');
+           %Area: 34775
+       %Centroid: [264.1136 372.9793]
+    %BoundingBox: [22.5000 300.5000 464 155]
+
+    %Pintar el bounding box
+
+propiedades2 = regionprops(Herramienta2,'basic');
+propiedades3 = regionprops(Herramienta3,'basic');
+propiedades4 = regionprops(Herramienta4,'basic');
+
+figure(7)
+imshow(Segmentada1)
+title('Herramienta 1 con recuadro de Segmentación')
+hold on
+rectangle('Position',propiedades.BoundingBox,'EdgeColor','y','LineWidth',2);
+
+propiedades = regionprops(Herramienta1,'ConvexHull');
+xc= floor(propiedades.ConvexHull(:,1));
+yc= floor(propiedades.ConvexHull(:,2));
+
+plot(xc,yc,'b')
+
+
+

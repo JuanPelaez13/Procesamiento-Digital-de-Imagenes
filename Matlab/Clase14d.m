@@ -111,3 +111,45 @@ title('Herramienta 3')
 subplot(1,4,4)
 imshow(Segmentada4)
 title('Herramienta 4')
+
+
+
+%Extracción de caracteristicas de cada elemento
+%Basic extrae las tres caracteristicas principales de un objeto
+
+propiedades = regionprops(Herramienta1,'basic');
+           %Area: 34775
+       %Centroid: [264.1136 372.9793]
+    %BoundingBox: [22.5000 300.5000 464 155]
+
+    %Pintar el bounding box
+
+propiedades2 = regionprops(Herramienta2,'basic');
+propiedades3 = regionprops(Herramienta3,'basic');
+propiedades4 = regionprops(Herramienta4,'basic');
+
+figure(7)
+subplot(1,2,1)
+imshow(Segmentada1)
+title('Recuadro que contiene la imágen')
+hold on
+rectangle('Position',propiedades.BoundingBox,'EdgeColor','y','LineWidth',2);
+
+subplot(1,2,2)
+imshow(Segmentada1)
+title('Imagen rodeada con ConvexHull')
+hold on
+propiedades11 = regionprops(Herramienta1,'ConvexHull','Image');
+xc= floor(propiedades11.ConvexHull(:,1));
+yc= floor(propiedades11.ConvexHull(:,2));
+
+plot(xc,yc,'b')
+
+figure(8)
+imshow(propiedades11.Image)
+title('Recorta la imágen')
+
+
+
+
+
